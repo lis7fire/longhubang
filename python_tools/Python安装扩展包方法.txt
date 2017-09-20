@@ -1,0 +1,23 @@
+方法一：
+正常情况下，我们要给Python安装第三方的扩展包，我们必须下载压缩包，解压缩到一个目录，然后命令行或者终端打开这个目录，然后执行
+python setup.py install
+方法二：
+在 D:\Python27\Scripts 目录下使用easy_install pyquery 命令直接在线安装扩展模块
+------------------------------------------------------------------------
+以win7安装pyquery为例：
+1、安装包准备：
+网址 http://www.lfd.uci.edu/~gohlke/pythonlibs/ 下载对应版本 lxml-4.0.0-cp36-cp36m-win_amd64.whl
+网址 https://pypi.python.org/pypi/pyquery/ 下载 pyquery-1.2.17.tar.gz
+2、cmd到D:\Python27\Scripts目录下，
+3、执行命令 pip install D:\lxml-4.0.0-cp36-cp36m-win_amd64.whl 安装lxml模块
+4、执行命令 easy_install pyquery【在线安装】或者 easy_install D:\pyquery-1.2.17.tar.gz
+5、安装成功
+
+Python连接mysql：
+可以安装mysql-connector.msi 后导入：import mysql.connector
+也可以安装pip install pymysql 后导入：import pymysql.cursors
+
+windows下如何安装pyquery：
+http://blog.csdn.net/xx_xxxxxxxxxx1120/article/details/53455796
+ pyquery用法：
+http://www.jb51.net/article/82955.htm

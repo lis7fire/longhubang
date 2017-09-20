@@ -1,0 +1,9 @@
+大致流程是：
+1.将安装目录下的\Packages\Theme - Default.sublime-package文件添加.zip后缀，用压缩软件打开并解压缩；
+2.在解压缩出来的文件中找到Default.sublime-theme，使用文本编辑器打开;
+3.查找“// Tab Labels”，在这部分配置之下查找"selected"，将所有selected块中的fg的值由“[255, 255, 255, 255]”改为"[255, 216, 0, 255]";
+4.保存编辑的文件，并将解压缩的目录打包为zip格式，然后替换\Packages\Theme - Default.sublime-package文件，替换前请关闭sublime。
+
+
+参考网页中提到可以修改....\Packages\Theme - Default\medium_dark_selected_tab_bg.png和....\Packages\Theme - Default\medium_dark_unselected_tab_bg2.png两张图片来实现，我试了可以改，但没达到里面的效果
+
