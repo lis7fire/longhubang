@@ -19,11 +19,11 @@ class Info_unit(object):
 		self.__title = item('p').html() #抓取股票名字
 		self.__reason=(self.__title).split(u'：')[1] #汉字使用Unicode编码，以u表示出来
 		self.__title=(self.__title).split('(')[0]
-		print(item('.cjmx')('p')('span').text()+'wanyuan')
+		# print(item('.cjmx')('p')('span').text()+'wanyuan')
 
 		self.__totall_buy_in = item('.cjmx')('p')('span').html()
 		self.__totall_sell_out = item('.cjmx')('p')('span')('.c-fall').html()
-		print(self.__totall_buy_in,'&&&&&&&',self.__totall_sell_out)
+		# print(self.__totall_buy_in,'&&&&&&&',self.__totall_sell_out)
 
 		self.data = [] #保存每个股票的十位营业部、买入额、卖出额
 		self.data_threedays= [] #保存三日龙虎榜的list
@@ -32,14 +32,22 @@ class Info_unit(object):
 		self.data_sell=self.tr_xiwei(item('tbody').eq(1)('tr').items())	
 		# if : #可以模块独立出来，在这里判断如果是三日的榜单就排到另外一个list中：
 		# 	pass
-		print('-----------',i+1,self.__stock_code,self.__title,self.__reason,'---------------------------------------')
-
+		# print('-----------',i+1,self.__stock_code,self.__title,self.__reason,'---------------------------------------')
+		self.is_3days()
 		self.stockcont=	{'stock_code':self.__stock_code,   'rid':self.__rid,  'name':self.__title , 
 		'reason': self.__reason,  'totall_buy_in':self.__totall_buy_in, 'totall_sell_out':self.__totall_sell_out, 
 		'buyers':self.data_buy,'sellers':self.data_sell, 'date_in':date_of_today}
-
-		# print(self.stockcont)
+		# print(self.__rid)
+		# self.test()
 #		self.save_to_db()
+
+	def is_3days(self):#判断是否3日上榜
+		rid=self.__rid.split('_')[1]
+		tf={'3':False, '4':False, '6':False, '7':True, '306':False, '406':False, '13032':False,}[rid]
+		if tf:#如果为true表示三日的
+			print('is_3days',self.stockcont['name'])
+			pass
+		pass
 
 	def get_dict(self):
 		return self.stockcont
@@ -55,7 +63,6 @@ class Info_unit(object):
 #			print(tr.children().eq(0).text())
 			sub_data.append(tr.children().eq(1).text()) #买入金额
 			sub_data.append(tr.children().eq(2).text()) #卖出金额
-			# print('sub_data是：',sub_data)
 			# self.data.append(sub_data)
 			buy_sell.append(sub_data)
 		return buy_sell
@@ -74,6 +81,14 @@ class Info_unit(object):
 		cursor.close()
 		cnx.close()
 
+	def test(self):
+		for x in self.stockcont['buyers']:
+			print(self.stockcont['stock_code'], self.stockcont['rid'],self.stockcont['name'],
+				self.stockcont['reason'],self.stockcont['totall_buy_in'] , self.stockcont['totall_sell_out'],
+				x[0],x[1],x[2],self.stockcont['date_in']) 
+			print('--------------------------------------------------')
+		pass
+
 doc = pq('http://data.10jqka.com.cn/market/longhu/')
 #doc = pq(filename='downlhb.html', parser='html')
 
@@ -85,9 +100,9 @@ i=0
 for item in items: # 遍历每个个股
 	instances.append(Info_unit(item).get_dict())
 	i=i+1
-	# if i==1:#测试用
+	# if i==5:#测试用
 	# 	break
-print(instances)
+# print(instances)
 
 print('Done！！！' )
 print(i) 
