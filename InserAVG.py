@@ -1,4 +1,4 @@
-#!/usr/bin/python  
+#!/usr/bin/env python3
 #-*-coding:utf-8-*- 
 # 上面两句注释必须要，防止无法打印中文的
 
