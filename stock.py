@@ -20,7 +20,6 @@ class Info_unit(object):
 		self.__reason=(self.__title).split(u'：')[1] #汉字使用Unicode编码，以u表示出来
 		self.__title=(self.__title).split('(')[0]
 		# print(item('.cjmx')('p')('span').text()+'wanyuan')
-
 		self.__totall_buy_in = item('.cjmx')('p')('span').html()
 		self.__totall_sell_out = item('.cjmx')('p')('span')('.c-fall').html()
 		# print(self.__totall_buy_in,'&&&&&&&',self.__totall_sell_out)
@@ -30,9 +29,6 @@ class Info_unit(object):
 
 		self.data_buy=self.tr_xiwei(item('tbody').eq(0)('tr').items())
 		self.data_sell=self.tr_xiwei(item('tbody').eq(1)('tr').items())	
-		# if : #可以模块独立出来，在这里判断如果是三日的榜单就排到另外一个list中：
-		# 	pass
-		# print('-----------',i+1,self.__stock_code,self.__title,self.__reason,'---------------------------------------')
 		self.is_3days()
 		self.stockcont=	{'stock_code':self.__stock_code,   'rid':self.__rid,  'name':self.__title , 
 		'reason': self.__reason,  'totall_buy_in':self.__totall_buy_in, 'totall_sell_out':self.__totall_sell_out, 
