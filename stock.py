@@ -27,30 +27,28 @@ class Info_unit(object):
 		self.data = [] #保存每个股票的十位营业部、买入额、卖出额
 		self.data_threedays= [] #保存三日龙虎榜的list
 
-		self.data_buy=self.tr_xiwei(item('tbody').eq(0)('tr').items())
-		self.data_sell=self.tr_xiwei(item('tbody').eq(1)('tr').items())	
-		self.is_3days()
+		self.data_buy=self.__tr_xiwei(item('tbody').eq(0)('tr').items())
+		self.data_sell=self.__tr_xiwei(item('tbody').eq(1)('tr').items())
+
 		self.stockcont=	{'stock_code':self.__stock_code,   'rid':self.__rid,  'name':self.__title , 
 		'reason': self.__reason,  'totall_buy_in':self.__totall_buy_in, 'totall_sell_out':self.__totall_sell_out, 
 		'buyers':self.data_buy,'sellers':self.data_sell, 'date_in':date_of_today}
-		# print(self.__rid)
-		# self.test()
-#		self.save_to_db()
+		self.is_3days()
 
 	def is_3days(self):#判断是否3日上榜
 		rid=self.__rid.split('_')[1]
-		tf={'3':False, '4':False, '6':False, '7':True, '306':False, '406':False, '13032':False,}[rid]
+		tf={'7':True, '8':True, '10':True, '11':True, '28':True, '29':True }.get(rid,False)
 		if tf:#如果为true表示三日的
-			print('is_3days',self.stockcont['name'])
+			print('is_3days',self.stockcont['rid'],self.stockcont['name'])
 			pass
 		pass
 
 	def get_dict(self):
 		return self.stockcont
 		pass
-#tr_xiwei()函数：提取传入的<tbody>下的五个<tr>,每次调用该函数会循环五次;返回保存五个席位的list,如下:
+#__tr_xiwei()函数：提取传入的<tbody>下的五个<tr>,每次调用该函数会循环五次;返回保存五个席位的list,如下:
 #return [['华泰证券股份有限公司上海浦东新区福山路证券营业部', '5158.49', '89.30'], [同前面],[],[],[]]
-	def tr_xiwei(self,trs):
+	def __tr_xiwei(self,trs):
 		# sub_data_gen=[tr('a').attr('title') for tr in trs]
 		buy_sell=[]
 		for tr in trs:
@@ -94,9 +92,13 @@ items = doc('.rightcol.fr')('.stockcont').items()
 instances = []
 i=0
 for item in items: # 遍历每个个股
-	instances.append(Info_unit(item).get_dict())
+	stock=Info_unit(item)
+	# stock.save_to_db()
+	# self.test()
+	instances.append(stock.get_dict())
+	# print("sssssssssssssssssssssssssssss",stock.get_dict())
 	i=i+1
-	# if i==5:#测试用
+	# if i==3:#测试用
 	# 	break
 # print(instances)
 
