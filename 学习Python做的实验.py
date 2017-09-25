@@ -4,6 +4,25 @@
 from __future__ import print_function
 import sys
 from functools import reduce
+import logging
+import os
+
+print(os.environ)
+try:
+	print('ttt')
+	r=10/3
+	print(r)
+except BaseException as e:
+	print('有错误：')
+	print(e)
+else:
+	print('没有错误执行ELSE!!!')
+finally:
+	r=10/10
+	print(r)
+print('END')
+
+logging.info('-------------- = %d' % 100)
 
 # print(sys.path)
 while True:
