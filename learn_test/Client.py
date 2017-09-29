@@ -11,18 +11,17 @@ class clients(object):
 		return self.csock.send(meg.encode('utf-8'))
 		pass
 	def get_meg(self):
-		return self.csock.recv(1024)
+		return self.csock.recv(1024).decode('utf-8')
 		pass
 
-
-c=clients(('127.0.0.1',8002))
+c=clients(('127.0.0.1',8010))
 c.send_meg('奥特曼')
-print('收到的消息：',c.get_meg().decode('utf-8'))
+print('收到的消息：',c.get_meg())
 while True:
 	try:
-		c.send_meg(input('请输入：'))
-		info=c.get_meg().decode('utf-8')
+		info=c.get_meg()
 		print('收到的消息：',info)
+		c.send_meg(input('请输入：'))
 		if info=='你好，exit':
 			c.csock.close()
 			print('连接已断开！')
