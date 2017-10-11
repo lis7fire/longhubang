@@ -16,20 +16,10 @@ class clients(object):
 
 print('Client')
 c=clients(('127.0.0.1',8000))
-print('Client')
-c.send_meg('奥特曼')
-print('Client')
-print('收到的消息：',c.get_meg())
 while True:
 	try:
 		info=c.get_meg()
 		print('收到的消息：',info)
-		c.send_meg(input('请输入：'))
-		if info=='你好，exit':
-			c.csock.close()
-			print('连接已断开！')
-			break
-			pass
 	except Exception as e:
 		c.csock.close()
 		raise e

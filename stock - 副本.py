@@ -27,13 +27,13 @@ class Info_unit(object):
 
 		self.data = [] #保存每个股票的十位营业部、买入额、卖出额
 		self.data_threedays= [] #保存三日龙虎榜的list
-		if :# 可以模块独立出来，在这里判断如果是三日的榜单就排到另外一个list中：
-			pass	
+		# if True:# 可以模块独立出来，在这里判断如果是三日的榜单就排到另外一个list中：
+		# 	pass
 		trs = item('tr:not(.bg-blue)').items()
 		print('-----------',i+1,self.stock_code,self.title,self.reason,'---------------------------------------')
 		self.tiqu(trs)
 #		print(self.data)
-#		self.save_to_db()
+		self.save_to_db()
 
 	def tiqu(self,trs):#提取一个股票的买入前五和卖出前五，总共十个
 		for tr in trs:
