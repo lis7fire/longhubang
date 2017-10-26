@@ -135,11 +135,7 @@ def save_to_db_once(list_all): #这个写mysql的方法比上面的效率高
     cnx.commit() #循环外一次提交效率搞很多倍
     cursor.close()
     cnx.close()
-# start = datetime.datetime.now()
-# save_to_db_once(data_not3day+data_threedays)
-end_time = datetime.datetime.now()
-print('Done！！！')
-print("插入数据库消耗时间：Cast: ",(end_time-start_time).microseconds/1000,"ms")
+
 # buy_all=0;buy_num=0;sell_all=0;sell_num=0
 
 def map_arr(data_dic,res):
@@ -176,11 +172,19 @@ def save_once(result): #这个写mysql的方法比上面的效率高
     cursor.close()
     cnx.close()
 
+# start = datetime.datetime.now()
+# save_to_db_once(data_not3day+data_threedays)
+# save_once(result)
+end_time = datetime.datetime.now()
 result=xunhuan(data_not3day)
-print(result)
-save_once(result)
+print("插入数据库消耗时间：Cast: ",(end_time-start_time).microseconds/1000,"ms")
+print('Done！！！')
+print('--------------------------------------------------')
 print("今日总共上榜股票个数：",i)
 print('今日上榜数量：',len(data_not3day),' 三日上榜数量：',len(data_threedays))
+print(result)
+print('买入平均值：',round(result['buy_all']/result['buy_num'],2),'卖出平均值：',round(result['sell_all']/result['sell_num'],2))
+print('--------------------------------------------------')
 
 def reduce_sum():
     pass
