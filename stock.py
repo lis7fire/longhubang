@@ -9,7 +9,7 @@ import pymysql.cursors
 
 date_of_today = datetime.datetime.now().strftime("%Y-%m-%d")
 # os.mknod(date_of_today)
-# date_of_today='2017-10-4'#items = doc('')
+# date_of_today='2017-10-20'#items = doc('')
 data_threedays = []  # 保存三日龙虎榜的list
 data_not3day = []
 
@@ -135,3 +135,10 @@ print('Done！！！')
 print("插入数据库消耗时间：Cast: ",(end_time-start_time).microseconds/1000,"ms")
 print("今日总共上榜股票个数：",i)
 print('今日上榜数量：',len(data_not3day),' 三日上榜数量：',len(data_threedays))
+
+def map_arr():
+    pass
+def reduce_sum():
+    pass
+# map(map_arr, data_not3day)
+# reduce(reduce_sum, sequence)
