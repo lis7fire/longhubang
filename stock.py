@@ -26,9 +26,8 @@ class Info_unit(object):
         self.__totall_sell_out = item('.cjmx')('p')('span')('.c-fall').html()
         # print(self.__totall_buy_in,'&&&&&&&',self.__totall_sell_out)
 
-        self.data = []  # 保存每个股票的十位营业部、买入额、卖出额
+        # self.data = []  # 保存每个股票的十位营业部、买入额、卖出额
         
-
         self.data_buy = self.__tr_xiwei(item('tbody').eq(0)('tr').items()) #保存买前五的数组
         self.data_sell = self.__tr_xiwei(item('tbody').eq(1)('tr').items())
 
@@ -45,7 +44,9 @@ class Info_unit(object):
             print('is_3days', self.stockcont['rid'], self.stockcont['name'])
             data_threedays.append(self.get_dict())
         else:
+            # print('not_3days', self.stockcont['rid'], self.stockcont['name'])
             data_not3day.append(self.get_dict())
+            # print(len(data_not3day))
         pass
 
     def get_dict(self):
@@ -57,14 +58,20 @@ class Info_unit(object):
         # sub_data_gen=[tr('a').attr('title') for tr in trs]
         buy_sell = []
         for tr in trs:
-            sub_data = []  # 缓存每个股票的十位营业部、买入额、卖出额
-            # 席位营业部 tr.children().eq(0).text()
-            sub_data.append(tr('a').attr('title'))
-#			print(tr.children().eq(0).text())
-            sub_data.append(tr.children().eq(1).text())  # 买入金额
-            sub_data.append(tr.children().eq(2).text())  # 卖出金额
-            # self.data.append(sub_data)
-            buy_sell.append(sub_data)
+#             sub_data = []  # 缓存每个股票的十位营业部、买入额、卖出额
+#             # 席位营业部 tr.children().eq(0).text()
+#             sub_data.append(tr('a').attr('title'))
+# #			print(tr.children().eq(0).text())
+#             sub_data.append(tr.children().eq(1).text())  # 买入金额
+#             sub_data.append(tr.children().eq(2).text())  # 卖出金额
+#             # self.data.append(sub_data)
+#             buy_sell.append(sub_data)
+
+            sub_data_dic={'bs_name':0,'buy_value':0,'sell_value':0}
+            sub_data_dic['bs_name']=tr('a').attr('title')
+            sub_data_dic['buy_value']=tr.children().eq(1).text()
+            sub_data_dic['sell_value']=tr.children().eq(2).text()
+            buy_sell.append(sub_data_dic)
         return buy_sell
 
     def save_to_db(self):  # 存入MySQL数据库 mysql密码为root Cjf1991cjf!
@@ -116,28 +123,65 @@ def save_to_db_once(list_all): #这个写mysql的方法比上面的效率高
     cnx = pymysql.connect(user='root', password='root',
                       host='localhost', database='tonghuashun', charset="utf8")
     cursor = cnx.cursor()
-    add_data = ("INSERT INTO stocks (code, rid, name, reason, totall_buy_in, totall_sell_out, buyer, buy_in, sell_out,date_in) VALUES (%s, %s, %s, %s, %s ,%s, %s ,%s ,%s,%s  )")
-    # add_data = ("INSERT INTO stocks1 (stock_code, rid, name, reason, totall_buy_in, totall_sell_out, buyer, buy_in, sell_out,date_in) VALUES (%s, %s, %s, %s, %s ,%s, %s ,%s ,%s,%s  )")
+    # add_data = ("INSERT INTO stocks (code, rid, name, reason, totall_buy_in, totall_sell_out, buyer, buy_in, sell_out,date_in) VALUES (%s, %s, %s, %s, %s ,%s, %s ,%s ,%s,%s  )")
+    add_data = ("INSERT INTO stocks1 (stock_code, rid, name, reason, totall_buy_in, totall_sell_out, buyer, buy_in, sell_out,date_in) VALUES (%s, %s, %s, %s, %s ,%s, %s ,%s ,%s,%s  )")
     print('--------------------------------------------------')
     for dic in list_all:
         for bs in dic['buyers']+dic['sellers']:
             data_data = (dic['stock_code'], dic['rid'], dic['name'], dic['reason'],
-                        dic['totall_buy_in'], dic['totall_sell_out'], bs[0], bs[1], bs[2], date_of_today)
+                        dic['totall_buy_in'], dic['totall_sell_out'], bs['bs_name'], bs['buy_value'], bs['sell_value'], date_of_today)
             cursor.execute(add_data, data_data)
             # print(bs)
     cnx.commit() #循环外一次提交效率搞很多倍
     cursor.close()
     cnx.close()
 # start = datetime.datetime.now()
-save_to_db_once(data_not3day+data_threedays)
+# save_to_db_once(data_not3day+data_threedays)
 end_time = datetime.datetime.now()
 print('Done！！！')
 print("插入数据库消耗时间：Cast: ",(end_time-start_time).microseconds/1000,"ms")
+# buy_all=0;buy_num=0;sell_all=0;sell_num=0
+
+def map_arr(data_dic,res):
+    for bs in data_dic['buyers']+data_dic['sellers']:
+        if float(bs['sell_value'])>1000 :
+            res['sell_all']=res['sell_all']+float(bs['sell_value'])
+            res['sell_num']=res['sell_num']+1
+        if float(bs['buy_value'])>1000:
+            res['buy_all']=res['buy_all']+float(bs['buy_value'])
+            res['buy_num']=res['buy_num']+1
+        pass
+    return res
+def xunhuan(datas): #循环数组统计非三天的大于1000万的额度
+    res={'buy_all':0,'buy_num':0,'sell_all':0,'sell_num':0}
+    for data in datas:
+        map_arr(data,res)
+    pass
+    res['buy_all']=round(res['buy_all'],2)
+    res['sell_all']=round(res['sell_all'],2)
+    return res
+
+def save_once(result): #这个写mysql的方法比上面的效率高
+    cnx = pymysql.connect(user='root', password='root',
+                      host='localhost', database='tonghuashun', charset="utf8")
+    cursor = cnx.cursor()
+    add_data = ("INSERT INTO lhb_avg ( buy_all,buy_num,   sell_all,sell_num,buy_avg,sell_avg, date_in) VALUES (%s, %s, %s, %s, %s ,%s, %s )")
+    print('--------------------------------------------------')
+    b_avg=round(result['buy_all']/result['buy_num'],2)
+    s_avg=round(result['sell_all']/result['sell_num'],2)
+    print('买入大于1000万平均值：',b_avg,'卖出大于1000万平均值：',s_avg)
+    data_data = (result['buy_all'],result['buy_num'],result['sell_all'],result['sell_num'],b_avg,s_avg,date_of_today)
+    cursor.execute(add_data, data_data)
+    cnx.commit() #循环外一次提交效率搞很多倍
+    cursor.close()
+    cnx.close()
+
+result=xunhuan(data_not3day)
+print(result)
+save_once(result)
 print("今日总共上榜股票个数：",i)
 print('今日上榜数量：',len(data_not3day),' 三日上榜数量：',len(data_threedays))
 
-def map_arr():
-    pass
 def reduce_sum():
     pass
 # map(map_arr, data_not3day)
