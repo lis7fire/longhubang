@@ -9,7 +9,7 @@ import pymysql.cursors
 
 date_of_today = datetime.datetime.now().strftime("%Y-%m-%d")
 # os.mknod(date_of_today)
-# date_of_today='2017-10-20'#items = doc('')
+# date_of_today='2017-10-27'#items = doc('')
 data_threedays = []  # 保存三日龙虎榜的list
 data_not3day = []
 
@@ -123,8 +123,8 @@ def save_to_db_once(list_all): #这个写mysql的方法比上面的效率高
     cnx = pymysql.connect(user='root', password='root',
                       host='localhost', database='tonghuashun', charset="utf8")
     cursor = cnx.cursor()
-    # add_data = ("INSERT INTO stocks (code, rid, name, reason, totall_buy_in, totall_sell_out, buyer, buy_in, sell_out,date_in) VALUES (%s, %s, %s, %s, %s ,%s, %s ,%s ,%s,%s  )")
-    add_data = ("INSERT INTO stocks1 (stock_code, rid, name, reason, totall_buy_in, totall_sell_out, buyer, buy_in, sell_out,date_in) VALUES (%s, %s, %s, %s, %s ,%s, %s ,%s ,%s,%s  )")
+    add_data = ("INSERT INTO stocks (code, rid, name, reason, totall_buy_in, totall_sell_out, buyer, buy_in, sell_out,date_in) VALUES (%s, %s, %s, %s, %s ,%s, %s ,%s ,%s,%s  )")
+    # add_data = ("INSERT INTO stocks1 (stock_code, rid, name, reason, totall_buy_in, totall_sell_out, buyer, buy_in, sell_out,date_in) VALUES (%s, %s, %s, %s, %s ,%s, %s ,%s ,%s,%s  )")
     print('--------------------------------------------------')
     for dic in list_all:
         for bs in dic['buyers']+dic['sellers']:
@@ -148,7 +148,7 @@ def map_arr(data_dic,res):
             res['buy_num']=res['buy_num']+1
         pass
     return res
-def xunhuan(datas): #循环数组统计非三天的大于1000万的额度
+def xunhuan(datas): #循环数组统计非三天的大于1000万的额度，返回result字典
     res={'buy_all':0,'buy_num':0,'sell_all':0,'sell_num':0}
     for data in datas:
         map_arr(data,res)
@@ -156,7 +156,6 @@ def xunhuan(datas): #循环数组统计非三天的大于1000万的额度
     res['buy_all']=round(res['buy_all'],2)
     res['sell_all']=round(res['sell_all'],2)
     return res
-
 def save_once(result): #这个写mysql的方法比上面的效率高
     cnx = pymysql.connect(user='root', password='root',
                       host='localhost', database='tonghuashun', charset="utf8")
@@ -173,10 +172,10 @@ def save_once(result): #这个写mysql的方法比上面的效率高
     cnx.close()
 
 # start = datetime.datetime.now()
-# save_to_db_once(data_not3day+data_threedays)
-# save_once(result)
-end_time = datetime.datetime.now()
 result=xunhuan(data_not3day)
+save_to_db_once(data_not3day+data_threedays) #写入数据库：上榜详情
+save_once(result) #写入数据库：上榜平均额
+end_time = datetime.datetime.now()
 print("插入数据库消耗时间：Cast: ",(end_time-start_time).microseconds/1000,"ms")
 print('Done！！！')
 print('--------------------------------------------------')
