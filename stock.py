@@ -9,7 +9,7 @@ import pymysql.cursors
 
 date_of_today = datetime.datetime.now().strftime("%Y-%m-%d")
 # os.mknod(date_of_today)
-# date_of_today='2017-10-27'#items = doc('')
+# date_of_today='2017-11-02'#items = doc('')
 data_threedays = []  # 保存三日龙虎榜的list
 data_not3day = []
 
@@ -100,10 +100,16 @@ class Info_unit(object):
             print('--------------------------------------------------')
         pass
 
+
+
 doc = pq('http://data.10jqka.com.cn/market/longhu/')
 #doc = pq(filename='downlhb.html', parser='html')
-
-items = doc('.rightcol.fr')('.stockcont').items()
+try:
+    items = doc('.rightcol.fr')('.stockcont').items()
+except Exception as e:
+    print('没有连网！！！')
+else:
+    print('已连网抓到网页，继续进行！！！')
 # item('tbody')与item('tbody').items()有很大区别：需要使用for循环遍历时候用.items()；需要继续用pyquery选择器选择DOM时不加.items()
 #.items() 将pyquery对象格式化为python的对象【个人理解】
 i = 0
@@ -132,6 +138,7 @@ def save_to_db_once(list_all): #这个写mysql的方法比上面的效率高
                         dic['totall_buy_in'], dic['totall_sell_out'], bs['bs_name'], bs['buy_value'], bs['sell_value'], date_of_today)
             cursor.execute(add_data, data_data)
             # print(bs)
+    print('准备提交<龙虎榜详情数据>到数据库')
     cnx.commit() #循环外一次提交效率搞很多倍
     cursor.close()
     cnx.close()
@@ -166,6 +173,7 @@ def save_once(result): #这个写mysql的方法比上面的效率高
     s_avg=round(result['sell_all']/result['sell_num'],2)
     print('买入大于1000万平均值：',b_avg,'卖出大于1000万平均值：',s_avg)
     data_data = (result['buy_all'],result['buy_num'],result['sell_all'],result['sell_num'],b_avg,s_avg,date_of_today)
+    print('准备提交<上榜平均额>到数据库')
     cursor.execute(add_data, data_data)
     cnx.commit() #循环外一次提交效率搞很多倍
     cursor.close()
