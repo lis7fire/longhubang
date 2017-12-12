@@ -9,7 +9,7 @@ import pymysql.cursors
 
 date_of_today = datetime.datetime.now().strftime("%Y-%m-%d")
 # os.mknod(date_of_today)
-# date_of_today='2017-11-02'#items = doc('')
+# date_of_today='2017-12-01'#items = doc('')
 data_threedays = []  # 保存三日龙虎榜的list
 data_not3day = []
 
@@ -76,7 +76,7 @@ class Info_unit(object):
 
     def save_to_db(self):  # 存入MySQL数据库 mysql密码为root Cjf1991cjf!
         cnx = pymysql.connect(user='root', password='root',
-                              host='localhost', database='tonghuashun', charset="utf8")
+                              host='127.0.0.1', database='tonghuashun', charset="utf8")
         cursor = cnx.cursor()
         print('--------------------------------------------------')
         # print(self.data)
@@ -101,9 +101,8 @@ class Info_unit(object):
         pass
 
 
-
-doc = pq('http://data.10jqka.com.cn/market/longhu/')
-#doc = pq(filename='downlhb.html', parser='html')
+doc = pq(url='http://data.10jqka.com.cn/market/longhu/')
+# doc = pq(filename='downlhb.html', parser='html')
 try:
     items = doc('.rightcol.fr')('.stockcont').items()
 except Exception as e:
@@ -114,6 +113,7 @@ else:
 #.items() 将pyquery对象格式化为python的对象【个人理解】
 i = 0
 start_time = datetime.datetime.now()
+
 for item in items:  # 遍历每个个股
     stock = Info_unit(item)
     # stock.save_to_db()
@@ -127,7 +127,7 @@ for item in items:  # 遍历每个个股
 
 def save_to_db_once(list_all): #这个写mysql的方法比上面的效率高
     cnx = pymysql.connect(user='root', password='root',
-                      host='localhost', database='tonghuashun', charset="utf8")
+                      host='127.0.0.1', database='tonghuashun', charset="utf8")
     cursor = cnx.cursor()
     add_data = ("INSERT INTO stocks (code, rid, name, reason, totall_buy_in, totall_sell_out, buyer, buy_in, sell_out,date_in) VALUES (%s, %s, %s, %s, %s ,%s, %s ,%s ,%s,%s  )")
     # add_data = ("INSERT INTO stocks1 (stock_code, rid, name, reason, totall_buy_in, totall_sell_out, buyer, buy_in, sell_out,date_in) VALUES (%s, %s, %s, %s, %s ,%s, %s ,%s ,%s,%s  )")
@@ -165,7 +165,7 @@ def xunhuan(datas): #循环数组统计非三天的大于1000万的额度，返�
     return res
 def save_once(result): #这个写mysql的方法比上面的效率高
     cnx = pymysql.connect(user='root', password='root',
-                      host='localhost', database='tonghuashun', charset="utf8")
+                      host='127.0.0.1', database='tonghuashun', charset="utf8")
     cursor = cnx.cursor()
     add_data = ("INSERT INTO lhb_avg ( buy_all,buy_num,   sell_all,sell_num,buy_avg,sell_avg, date_in) VALUES (%s, %s, %s, %s, %s ,%s, %s )")
     print('--------------------------------------------------')
