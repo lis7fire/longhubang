@@ -6,10 +6,11 @@ import datetime
 import os
 from pyquery import PyQuery as pq
 import pymysql.cursors
+import requests
 
 date_of_today = datetime.datetime.now().strftime("%Y-%m-%d")
 # os.mknod(date_of_today)
-# date_of_today='2017-12-01'#items = doc('')
+date_of_today='2017-12-15'#items = doc('')
 data_threedays = []  # 保存三日龙虎榜的list
 data_not3day = []
 
@@ -101,8 +102,17 @@ class Info_unit(object):
         pass
 
 
-doc = pq(url='http://data.10jqka.com.cn/market/longhu/')
-# doc = pq(filename='downlhb.html', parser='html')
+# doc = pq(url='http://data.10jqka.com.cn/market/longhu/')
+URL = 'http://data.10jqka.com.cn/ifmarket/lhbggxq/report/'+date_of_today
+head = {'User-Agent': 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0) ',
+        'Accept-Encoding': 'gzip, deflate',
+        'Accept': 'text/html, application/xhtml+xml, */*', 'Cookie': ''}
+r = requests.get(URL, headers=head)
+print('--------------------')
+print("响应头", r.headers)
+print("请求头", r.request.headers)
+doc = pq(r.text, parser='html')
+
 try:
     items = doc('.rightcol.fr')('.stockcont').items()
 except Exception as e:
@@ -181,8 +191,8 @@ def save_once(result): #这个写mysql的方法比上面的效率高
 
 # start = datetime.datetime.now()
 result=xunhuan(data_not3day)
-save_to_db_once(data_not3day+data_threedays) #写入数据库：上榜详情
-save_once(result) #写入数据库：上榜平均额
+# save_to_db_once(data_not3day+data_threedays) #写入数据库：上榜详情
+# save_once(result) #写入数据库：上榜平均额
 end_time = datetime.datetime.now()
 print("插入数据库消耗时间：Cast: ",(end_time-start_time).microseconds/1000,"ms")
 print('Done！！！')

@@ -214,3 +214,35 @@ A.add_last(ListNode(100))
 A.bianli()
 A.del_i(8)
 A.bianli()
+
+def fenge(s,f):
+	A=[]
+	A=s.split(f)
+	return A
+	pass
+def xun(A,f):
+	B1=[]
+	for x in A:
+		try:
+			a=int(x)
+			B1.append(a)
+		except Exception as e:
+			print('ssssssss',x,f)
+			B2=fenge(x,f)
+			B1.append(B2)
+			continue
+	return B2	
+
+aa='2+3+5-2*8*9/1*2/2+1'
+A1=fenge(aa,'+')
+
+A2=xun(A1,'-')
+print('A1',A1)
+print('A1',A2)
+A3=xun(A2,'*')
+A4=xun(A3,'/')
+print('A1',A3)
+print('A1',A4)
+aa='2+4*2-1'
+print(eval(aa))
+
