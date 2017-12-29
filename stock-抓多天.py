@@ -12,7 +12,6 @@ from collections import Iterator
 import pymysql.cursors
 import requests
 
-# date_of_today = datetime.now().strftime("%Y-%m-%d")
 # os.mknod(date_of_today)
 date_of_today = '2017-12-28'  # 第一次有数据的日期：'2014-06-04'
 data_threedays = []  # 保存三日龙虎榜的list
@@ -21,12 +20,29 @@ count = 0
 
 
 class Info_unit(object):  # 用于抓取网页并解析的类
-    """docstring for info_unit"""
+    '''
+
+    [解析传递过来的某天龙虎榜网页内容]
+    
+    Variables:
+        date_of_today {str} -- [传递过来的龙虎榜是哪一天的]
+        data_threedays {list} -- [当天所有三日总金额上榜的股票]
+        data_not3day {list} -- [当天所有非三日上榜的股票]
+        count {number} -- [当天上榜的股票总个数]
+        """docstring for man_result""" {[type]} -- [没有被类包裹的函数]
+    '''
 
     def __init__(self):
         print('Info_unit类初始化。。。')
 
     def jieXi(self, item):
+        '''[网页解析者的主体]
+        
+        [description]
+        
+        Arguments:
+            item {[Pyquery类型]} -- [爬虫抓取的Html包，被格式化为Pyquery类型]
+        '''
         self.__stock_code = item('.stockcont').attr('stockcode')  # 抓取股票代码
         self.__rid = item('.stockcont').attr('rid')  # 抓取上榜编号 可以判断出上榜理由
         self.__title = item('p').html()  # 抓取股票名字
@@ -46,6 +62,13 @@ class Info_unit(object):  # 用于抓取网页并解析的类
                           "buyers": self.data_buy, "sellers": self.data_sell, "date_in": date_of_today}
 
     def is_3days(self):  # 初始化 data_not3day 和data_threedays 两个list；判断是否3日上榜,不在字典中则为当日
+        '''[判断本股票是否三日上榜类型]
+        
+        [通过rid来判断，判断完成之后分别加入 data_threedays/data_not3day 中保存]
+        Returns:
+            [none] -- [无返回值] 
+        '''
+
         rid = self.__rid.split('_')[1]
         tf = {"7": True, "8": True, "10": True, "11": True,
               "28": True, "29": True}.get(rid, False)
@@ -61,9 +84,16 @@ class Info_unit(object):  # 用于抓取网页并解析的类
         return self.stockcont
         pass
 
-    # __tr_xiwei()函数：提取传入的<tbody>下的五个<tr>,每次调用该函数会循环五次;返回保存五个席位的list,如下:
-    # return [["华泰证券股份有限公司上海浦东新区福山路证券营业部", "5158.49", "89.30"], [同前面],[],[],[]]
+    # return 
     def __tr_xiwei(self, trs):
+        '''[提取传入的<tbody>下的五个<tr>,每次调用该函数会循环五次;]
+        
+        Arguments:
+            trs {[Pyquery类型]} -- [<tbody>下的五个<tr>]
+        
+        Returns:格式形如：[["华泰证券股份有限公司上海浦东新区福山路证券营业部", "5158.49", "89.30"], [同前面],[],[],[]]
+            [list] -- [返回保存五个席位的list]
+        '''
         # sub_data_gen=[tr('a').attr('title') for tr in trs]
         buy_sell = []
         for tr in trs:
@@ -77,19 +107,27 @@ class Info_unit(object):  # 用于抓取网页并解析的类
         return buy_sell
 
 
-class man_result(object):  # 用于计算均值和链接 数据库的类。
-    """docstring for man_result"""
+class man_result(object):  
+    '''[用于计算均值和链接 数据库的类。]
+    
 
+    '''
     # self.cnx =''
     # self.cursor =''
     def __init__(self):
         print('man_result类初始化。。。')
 
-    def save_to_db_once(self, list_all):  # 这个写mysql的方法比上面的效率高
+    def save_to_db_once(self, list_all):  
+        '''[由于是一次commit，所以效率高；]
+        
+        [输入 data_not3day + data_threedays 并保存到数据库]
+        
+        Arguments:
+            list_all {[list]}-- [包含每个席位详情列表]
+        '''
         add_data_to_db = (
             "INSERT INTO stocks (code, rid, name, reason, totall_buy_in, totall_sell_out, buyer, buy_in, sell_out,date_in) VALUES (%s, %s, %s, %s, %s ,%s, %s ,%s ,%s,%s  )")
         # add_data_to_db = ("INSERT INTO stocks1 (stock_code, rid, name, reason, totall_buy_in, totall_sell_out, buyer, buy_in, sell_out,date_in) VALUES (%s, %s, %s, %s, %s ,%s, %s ,%s ,%s,%s  )")
-        # print('·····························')
         for dic in list_all:
             for bs in dic["buyers"] + dic["sellers"]:
                 data_data = (dic["stock_code"], dic["rid"], dic["name"], dic["reason"],
@@ -99,10 +137,16 @@ class man_result(object):  # 用于计算均值和链接 数据库的类。
         self.cnx.commit()  # 循环外一次提交效率搞很多倍
         print("已经提交<龙虎榜详情数据>到数据库")
 
-    def save_once(self, result):  # 这个写mysql的方法比上面的效率高
+    def save_once(self, result):  
+        '''[统计买卖各大于1000万元的席位数，成交总额，并计算平均值，以判断市场氛围]
+        
+        [传入result 并写入数据库]
+        
+        Arguments:
+            result {[list]} -- [计算的当天的龙虎榜成交总额以及平均值的信息]
+        '''
         add_data = (
             "INSERT INTO lhb_avg ( buy_all,buy_num,   sell_all,sell_num,buy_avg,sell_avg, date_in) VALUES (%s, %s, %s, %s, %s ,%s, %s )")
-        # print('·····························')
         b_avg = round(result["buy_all"] / result["buy_num"], 2)
         s_avg = round(result["sell_all"] / result["sell_num"], 2)
         # print("买入大于1000万平均值：", b_avg, "卖出大于1000万平均值：", s_avg)
@@ -112,8 +156,15 @@ class man_result(object):  # 用于计算均值和链接 数据库的类。
         self.cursor.execute(add_data, data_data)
         self.cnx.commit()  # 循环外一次提交效率搞很多倍
 
-    def open_cnx(self):  # 存入MySQL数据库 mysql密码为root Cjf1991cjf!
-        self.cnx = pymysql.connect(user='root', password='Cjf1991cjf!',
+    def open_cnx(self):  # 存入MySQL数据库 mysql密码为root 
+        '''[打开一个数据库连接]
+        
+        [description]
+        
+        Returns:
+            [type] -- [description]
+        '''
+        self.cnx = pymysql.connect(user='root', password='root',
                                    host='127.0.0.1', database='tonghuashun', charset="utf8")
         self.cursor = self.cnx.cursor()
         pass
@@ -125,6 +176,17 @@ class man_result(object):  # 用于计算均值和链接 数据库的类。
 
     # buy_all=0;buy_num=0;sell_all=0;sell_num=0
     def map_arr(self, data_dic, res):
+        '''[统计并且计算上榜总额和平均值]
+        
+        [description]
+        
+        Arguments:
+            data_dic {[type]} -- [description]
+            res {[type]} -- [description]
+        
+        Returns:
+            [type] -- [description]
+        '''
         # print(data_dic["buyers"])
         # print("卖方：",data_dic["sellers"])
         for bs in data_dic["buyers"] + data_dic["sellers"]:
@@ -149,6 +211,17 @@ class man_result(object):  # 用于计算均值和链接 数据库的类。
 
 
 def getDate(i, j):
+    '''
+    
+    [拼接出来一个时间字符串]
+    
+    Arguments:
+        i {[int]} -- [输入的月份]
+        j {[int]} -- [输入的日份]
+    
+    Returns:
+        [string] -- [返回形如 2017-12-25 的字串]
+    '''
     year = '2017'
     mon = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
     day = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18',
@@ -159,6 +232,16 @@ def getDate(i, j):
 
 # doc = pq(url='http://data.10jqka.com.cn/market/longhu/')
 def start(this_date):
+    '''[实际的爬虫]
+    
+    [发送请求包并且获取响应的Html实体]
+    
+    Arguments:
+        this_date {[string]} -- [需要抓取 哪一天 的龙虎榜]
+    
+    Returns:
+        bool -- [True：网页中没有龙虎榜数据，不是因为网络问题]
+    '''
     global date_of_today
     date_of_today = this_date;  # getDate(12,12)
     URL = 'http://data.10jqka.com.cn/ifmarket/lhbggxq/report/' + date_of_today
@@ -186,10 +269,8 @@ def start(this_date):
     # print(next(items) is None)
     global count
     for item in items:  # 遍历每个个股
-        # print(type(item),'-------==========')
         stock.jieXi(item)
         stock.is_3days()
-        # data_not3day.append(stock.get_dict())
         count = count + 1
     if (count == 0):
         print('没有数据')
@@ -198,6 +279,14 @@ def start(this_date):
 
 
 def print_info(start_time, result):
+    '''[封装一批打印输出]
+    
+    [输出本次抓取的数据概览]
+    
+    Arguments:
+        start_time {[datetime]} -- [抓取网页的开始时间，用于计算爬虫耗时]
+        result {[none]} -- [无返回值]
+    '''
     end_time = datetime.now()
     print("插入数据库消耗时间：Cast: ", (end_time - start_time).microseconds / 1000, "ms")
     print('Done！！！')
@@ -207,7 +296,6 @@ def print_info(start_time, result):
     print(result)
     print('买入平均值：', round(result['buy_all'] / result['buy_num'], 2), '万元 ，卖出平均值：',
           round(result['sell_all'] / result['sell_num'], 2), '万元 ')
-    # print('=============================================================')
 
 
 mouth = 1;
@@ -217,6 +305,11 @@ fileout = open('logs.txt', 'a', encoding="utf-8")
 fileout.write('=====================================================================\n')
 fileout.write('本轮日志记录开始时间：' + datetime.now().strftime("%Y-%m-%d-->%H:%M:%S ") + '\n')
 while tian < 32:  # 循环一年
+    '''[整个任务的启动者，每一次循环就代表让爬虫去抓取指定一天的数据]
+    
+    [从1-1 开始循环，直到12-31结束，每过31天，，mouth就+1；循环结束表示抓取了一年的数据]
+    [就每次爬虫运行耗时和异常信息(如果出错)写入日志]
+    '''
     # global data_threedays;data_not3day;count
     data_threedays = []  # 保存三日龙虎榜的list
     data_not3day = [];

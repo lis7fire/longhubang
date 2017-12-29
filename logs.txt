@@ -2217,3 +2217,216 @@ ValueError: day is out of range for month
 ······日期： 2017-12-30 周六 没有数据...
 ······日期： 2017-12-31 周日 没有数据...
 本轮日志记录结束时间：2017-12-28-->18:55:28 
+=====================================================================
+本轮日志记录开始时间：2017-12-29-->14:39:17 
+······日期： 2017-01-01 周日 没有数据...
+······日期： 2017-01-02 周一 没有数据...
+-------------------------------------------
+错误堆栈 &&出错日期： 2017-01-03
+Traceback (most recent call last):
+  File "C:\Users\toor\Documents\GitHub\longhubang\stock-抓多天.py", line 323, in <module>
+    getresult.open_cnx()
+  File "C:\Users\toor\Documents\GitHub\longhubang\stock-抓多天.py", line 168, in open_cnx
+    host='127.0.0.1', database='tonghuashun', charset="utf8")
+  File "D:\Python36\lib\site-packages\pymysql\__init__.py", line 90, in Connect
+    return Connection(*args, **kwargs)
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 706, in __init__
+    self.connect()
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 932, in connect
+    self._request_authentication()
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 1152, in _request_authentication
+    auth_packet = self._read_packet()
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 1014, in _read_packet
+    packet.check_error()
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 393, in check_error
+    err.raise_mysql_exception(self._data)
+  File "D:\Python36\lib\site-packages\pymysql\err.py", line 107, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1045, "Access denied for user 'root'@'localhost' (using password: YES)")
+
+-------------------------------------------
+错误堆栈 &&出错日期： 2017-01-04
+Traceback (most recent call last):
+  File "C:\Users\toor\Documents\GitHub\longhubang\stock-抓多天.py", line 323, in <module>
+    getresult.open_cnx()
+  File "C:\Users\toor\Documents\GitHub\longhubang\stock-抓多天.py", line 168, in open_cnx
+    host='127.0.0.1', database='tonghuashun', charset="utf8")
+  File "D:\Python36\lib\site-packages\pymysql\__init__.py", line 90, in Connect
+    return Connection(*args, **kwargs)
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 706, in __init__
+    self.connect()
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 932, in connect
+    self._request_authentication()
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 1152, in _request_authentication
+    auth_packet = self._read_packet()
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 1014, in _read_packet
+    packet.check_error()
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 393, in check_error
+    err.raise_mysql_exception(self._data)
+  File "D:\Python36\lib\site-packages\pymysql\err.py", line 107, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1045, "Access denied for user 'root'@'localhost' (using password: YES)")
+
+-------------------------------------------
+错误堆栈 &&出错日期： 2017-01-05
+Traceback (most recent call last):
+  File "C:\Users\toor\Documents\GitHub\longhubang\stock-抓多天.py", line 323, in <module>
+    getresult.open_cnx()
+  File "C:\Users\toor\Documents\GitHub\longhubang\stock-抓多天.py", line 168, in open_cnx
+    host='127.0.0.1', database='tonghuashun', charset="utf8")
+  File "D:\Python36\lib\site-packages\pymysql\__init__.py", line 90, in Connect
+    return Connection(*args, **kwargs)
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 706, in __init__
+    self.connect()
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 932, in connect
+    self._request_authentication()
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 1152, in _request_authentication
+    auth_packet = self._read_packet()
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 1014, in _read_packet
+    packet.check_error()
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 393, in check_error
+    err.raise_mysql_exception(self._data)
+  File "D:\Python36\lib\site-packages\pymysql\err.py", line 107, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1045, "Access denied for user 'root'@'localhost' (using password: YES)")
+
+-------------------------------------------
+错误堆栈 &&出错日期： 2017-01-06
+Traceback (most recent call last):
+  File "C:\Users\toor\Documents\GitHub\longhubang\stock-抓多天.py", line 323, in <module>
+    getresult.open_cnx()
+  File "C:\Users\toor\Documents\GitHub\longhubang\stock-抓多天.py", line 168, in open_cnx
+    host='127.0.0.1', database='tonghuashun', charset="utf8")
+  File "D:\Python36\lib\site-packages\pymysql\__init__.py", line 90, in Connect
+    return Connection(*args, **kwargs)
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 706, in __init__
+    self.connect()
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 932, in connect
+    self._request_authentication()
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 1152, in _request_authentication
+    auth_packet = self._read_packet()
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 1014, in _read_packet
+    packet.check_error()
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 393, in check_error
+    err.raise_mysql_exception(self._data)
+  File "D:\Python36\lib\site-packages\pymysql\err.py", line 107, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1045, "Access denied for user 'root'@'localhost' (using password: YES)")
+
+······日期： 2017-01-07 周六 没有数据...
+······日期： 2017-01-08 周日 没有数据...
+-------------------------------------------
+错误堆栈 &&出错日期： 2017-01-09
+Traceback (most recent call last):
+  File "C:\Users\toor\Documents\GitHub\longhubang\stock-抓多天.py", line 323, in <module>
+    getresult.open_cnx()
+  File "C:\Users\toor\Documents\GitHub\longhubang\stock-抓多天.py", line 168, in open_cnx
+    host='127.0.0.1', database='tonghuashun', charset="utf8")
+  File "D:\Python36\lib\site-packages\pymysql\__init__.py", line 90, in Connect
+    return Connection(*args, **kwargs)
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 706, in __init__
+    self.connect()
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 932, in connect
+    self._request_authentication()
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 1152, in _request_authentication
+    auth_packet = self._read_packet()
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 1014, in _read_packet
+    packet.check_error()
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 393, in check_error
+    err.raise_mysql_exception(self._data)
+  File "D:\Python36\lib\site-packages\pymysql\err.py", line 107, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1045, "Access denied for user 'root'@'localhost' (using password: YES)")
+
+-------------------------------------------
+错误堆栈 &&出错日期： 2017-01-10
+Traceback (most recent call last):
+  File "C:\Users\toor\Documents\GitHub\longhubang\stock-抓多天.py", line 323, in <module>
+    getresult.open_cnx()
+  File "C:\Users\toor\Documents\GitHub\longhubang\stock-抓多天.py", line 168, in open_cnx
+    host='127.0.0.1', database='tonghuashun', charset="utf8")
+  File "D:\Python36\lib\site-packages\pymysql\__init__.py", line 90, in Connect
+    return Connection(*args, **kwargs)
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 706, in __init__
+    self.connect()
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 932, in connect
+    self._request_authentication()
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 1152, in _request_authentication
+    auth_packet = self._read_packet()
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 1014, in _read_packet
+    packet.check_error()
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 393, in check_error
+    err.raise_mysql_exception(self._data)
+  File "D:\Python36\lib\site-packages\pymysql\err.py", line 107, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1045, "Access denied for user 'root'@'localhost' (using password: YES)")
+
+-------------------------------------------
+错误堆栈 &&出错日期： 2017-01-11
+Traceback (most recent call last):
+  File "C:\Users\toor\Documents\GitHub\longhubang\stock-抓多天.py", line 323, in <module>
+    getresult.open_cnx()
+  File "C:\Users\toor\Documents\GitHub\longhubang\stock-抓多天.py", line 168, in open_cnx
+    host='127.0.0.1', database='tonghuashun', charset="utf8")
+  File "D:\Python36\lib\site-packages\pymysql\__init__.py", line 90, in Connect
+    return Connection(*args, **kwargs)
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 706, in __init__
+    self.connect()
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 932, in connect
+    self._request_authentication()
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 1152, in _request_authentication
+    auth_packet = self._read_packet()
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 1014, in _read_packet
+    packet.check_error()
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 393, in check_error
+    err.raise_mysql_exception(self._data)
+  File "D:\Python36\lib\site-packages\pymysql\err.py", line 107, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1045, "Access denied for user 'root'@'localhost' (using password: YES)")
+
+-------------------------------------------
+错误堆栈 &&出错日期： 2017-01-12
+Traceback (most recent call last):
+  File "C:\Users\toor\Documents\GitHub\longhubang\stock-抓多天.py", line 323, in <module>
+    getresult.open_cnx()
+  File "C:\Users\toor\Documents\GitHub\longhubang\stock-抓多天.py", line 168, in open_cnx
+    host='127.0.0.1', database='tonghuashun', charset="utf8")
+  File "D:\Python36\lib\site-packages\pymysql\__init__.py", line 90, in Connect
+    return Connection(*args, **kwargs)
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 706, in __init__
+    self.connect()
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 932, in connect
+    self._request_authentication()
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 1152, in _request_authentication
+    auth_packet = self._read_packet()
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 1014, in _read_packet
+    packet.check_error()
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 393, in check_error
+    err.raise_mysql_exception(self._data)
+  File "D:\Python36\lib\site-packages\pymysql\err.py", line 107, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1045, "Access denied for user 'root'@'localhost' (using password: YES)")
+
+-------------------------------------------
+错误堆栈 &&出错日期： 2017-01-13
+Traceback (most recent call last):
+  File "C:\Users\toor\Documents\GitHub\longhubang\stock-抓多天.py", line 323, in <module>
+    getresult.open_cnx()
+  File "C:\Users\toor\Documents\GitHub\longhubang\stock-抓多天.py", line 168, in open_cnx
+    host='127.0.0.1', database='tonghuashun', charset="utf8")
+  File "D:\Python36\lib\site-packages\pymysql\__init__.py", line 90, in Connect
+    return Connection(*args, **kwargs)
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 706, in __init__
+    self.connect()
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 932, in connect
+    self._request_authentication()
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 1152, in _request_authentication
+    auth_packet = self._read_packet()
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 1014, in _read_packet
+    packet.check_error()
+  File "D:\Python36\lib\site-packages\pymysql\connections.py", line 393, in check_error
+    err.raise_mysql_exception(self._data)
+  File "D:\Python36\lib\site-packages\pymysql\err.py", line 107, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1045, "Access denied for user 'root'@'localhost' (using password: YES)")
+

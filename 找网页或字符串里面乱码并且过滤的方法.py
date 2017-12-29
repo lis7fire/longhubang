@@ -2,7 +2,7 @@
 # coding: utf-8
 # 上面两句注释必须要，防止无法打印中文的
 
-import datetime
+from datetime import datetime, date
 import os
 import re
 from pyquery import PyQuery as pq
@@ -35,7 +35,6 @@ fileout=open('luanma.txt','a',encoding="gbk");
 fileout.write("hahd大是大非"+'\n')
 
 # print fileout.read(1)
-
 pass
 date_of_today='2014-12-29'#items = doc('')
 
@@ -60,4 +59,30 @@ print("打印乱码字符： \n",tt.strip())
 print('----------------------\n  <a href="http://data.10jqka.com.cn/market/lhbyyb/orgcode/GDZQGFYXGSNBBLX		ZQYYB/"   \
  target="_blank" class="details" title="光大证券股份有限公司宁波北仑新碶证券营业部">光大证券股份有限公司宁波北仑新碶证券营业部</a>')
 
-print('本次日志记录时间：'+datetime.datetime.now().strftime("%Y-%m-%d-->%H:%M:%S ")+'\n')
+print('本次日志记录时间：'+datetime.now().strftime("%Y-%m-%d-->%H:%M:%S ")+'\n')
+
+print('--------------下面是读写二进制文件:----------------------------')
+#下面是读写二进制文件，以图片为例：多次读写对比图像的内容，可以感知图片底层的二进制展现。
+start_time=datetime.now()
+bfile=open("./a.jpg",'rb')
+print('------')
+a=b''
+while bfile.readable():
+	tmp=bfile.read()
+	a+=tmp
+	if not tmp:
+		break;
+print(type(a))
+print(len(a))
+print(chr(a[len(a)-1]),a[-7],a[-1]) # 打印ASCII码，结果以十进制表示。a是bytes类型，但a[-1]是int类型；，
+
+wbfile=open("./b.jpg","wb")
+wbfile.write(a[0:9697])
+wbfile.write(b'abcd') # 只要不是在文件头 修改 比特数据，在其余任何地方增删改比特位都不影响图片的格式损坏，里面图像会失真，但是能够打开。
+wbfile.write(a[3197:41976])
+wbfile.write(b'0abcde!')
+# wbfile.flush()
+bfile.close();
+wbfile.close()
+print("任务消耗时间：Cast: ", (datetime.now() - start_time).microseconds / 1000, "ms")
+print('OK!!!')
