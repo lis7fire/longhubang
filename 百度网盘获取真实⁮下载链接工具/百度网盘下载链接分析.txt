@@ -1,0 +1,387 @@
+具体步骤解析在最后面。
+----------------------包4、
+
+/:%2F
++:%2B
+==:%3D%3D
+[:%5B
+]:%5D
+
+https://pan.baidu.com/api/download?sign=XONIzY1zrSWZXB%2FRLEKkOnNrxtvVaLzn4k%2BLmOBvD88tbY0h0U7DtQ%3D%3D&timestamp=1514652585&fidlist=%5B916188959762109%5D&type=dlink&ct=pcygj&cv=5.6.3.4&channel=chunlei&web=1&app_id=250528&bdstoken=1ed63c7f24fd368f96f7073bd49b89ab&logid=MTUxNDY1Mjg3MTY5NzAuNzY4OTg5NjY3ODcwMzY5OA==&clienttype=0
+{
+    "errno": 0,
+    "request_id": 8443068481259012000,
+    "dlink": [
+        {
+            "fs_id": "916188959762109",
+            "dlink": "https://d.pcs.baidu.com/file/6b4f39cc4a791ed4700c171a6977cf4a?fid=2433224667-250528-916188959762109&time=1514652881&rt=pr&sign=FDTAERVC-DCb740ccc5511e5e8fedcff06b081203-6mS%2FeG%2FFS6aNRpyzall9a3GhKVQ%3D&expires=8h&chkv=1&chkbd=1&chkpc=&dp-logid=8443068481259011632&dp-callid=0&r=591885859"
+        }
+    ]
+}
+这个包的详细信息：
+Request Method:GET
+Status Code:200 OK
+Remote Address:112.34.111.108:443
+Response Headers
+view source
+Cache-Control:no-cache
+Connection:keep-alive
+Content-Encoding:gzip
+Content-Length:308
+Content-Type:application/json; charset=UTF-8
+Date:Sat, 30 Dec 2017 16:54:41 GMT
+Flow-Level:3
+Server:nginx
+Vary:Accept-Encoding
+X-Powered-By:BaiduCloud
+Yld:372617944716115504
+Yme:ZIGW/i4rX04SdTYHUmr/tGtPovMWVAfxoAhPyyc=
+Request Headers
+view source
+Accept:application/json, text/javascript, ; q=0.01
+Accept-Encoding:gzip, deflate, sdch, br
+Accept-Language:zh-CN,zh;q=0.8
+Connection:keep-alive
+Cookie:yundetect_httpport=10001; bdshare_firstime=1441637184814; panlogin_animate_showed=1; BAIDUID=9E282C0C20251223D9067410870BB3D7:FG=1; PSTM=1500106635; BIDUPSID=B72858A392123BF808B2AC361C077180; __cfduid=d0f761a353ea4d050004e39c134a521641503915605; BDUSS=UtJY2RlR1JYWFNjeXVvZlJ-Sms1aEl6R1BCODRNeGF6Z0RENE5wNTA4fmt-TmhaSVFBQUFBJCQAAAAAAAAAAAEAAABBkQQMejM5MzUyMTIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAORvsVnkb7FZO; PANWEB=1; STOKEN=5a7573d529f685ffec8d3a553fecc952d3e6d2a47e623dc89eac1415f63d36d3; SCRC=bc2972c1a8266b9ad3cb9f220f4a897f; BDCLND=jTANjfZMNtr32HwuKTmoS7FDzPgQG2OnnvyTbwyLOkw%3D; MCITY=-131%3A; PSINO=1; H_PS_PSSID=1454_21119_18560_17001_25227_25436_25178; BDORZ=B490B5EBF6F3CD402E515D22BCDA1598; Hm_lvt_7a3960b6f067eb0085b7f96ff5e660b0=1514385494,1514386300,1514647712,1514647867; Hm_lpvt_7a3960b6f067eb0085b7f96ff5e660b0=1514652578; PANPSC=9116202795601097122%3AZjFd1PuLJ%2BCynWRlA%2FAGiaikII2LTYQX49AGnxnjY%2BdKu8WyLCLL4eXStNSa0XHH76wl8A5y%2FXuhcX9Lqc6TJ9cb0aYFml4VWVlWJGg7qeZ9c6xaO4oLgT0Imr6lK%2B%2FC%2BJWDNkK4hUt7m6T14kJ2T2NtiaXV6jA2rsgnNL%2BLYct9tn9thbnTpv7IiW4JizVaiS3u8yDNz5M%3D; cflag=13%3A3
+Host:pan.baidu.com
+Referer:https://pan.baidu.com/disk/home?
+User-Agent:Mozilla/5.0 (iPad; CPU OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1
+X-Requested-With:XMLHttpRequest
+Query String Parameters
+view source
+view URL encoded
+sign:XONIzY1zrSWZXB/RLEKkOnNrxtvVaLzn4k+LmOBvD88tbY0h0U7DtQ==
+timestamp:1514652585
+fidlist:[916188959762109]
+type:dlink
+ct:pcygj
+cv:5.6.3.4
+channel:chunlei
+web:1
+app_id:250528
+bdstoken:1ed63c7f24fd368f96f7073bd49b89ab
+logid:MTUxNDY1Mjg3MTY5NzAuNzY4OTg5NjY3ODcwMzY5OA==
+clienttype:0
+
+====================================
+--------------------
+"sign1": "df49ef8d562129b1ed36cc1235e04c24ff461c78",
+    "sign2": "function s(j,r){var a=[];var p=[];var o=\"\";var v=j.length;for(var q=0;q<256;q++){a[q]=j.substr((q%v),1).charCodeAt(0);p[q]=q}for(var u=q=0;q<256;q++){u=(u+p[q]+a[q])%256;var t=p[q];p[q]=p[u];p[u]=t}for(var i=u=q=0;q<r.length;q++){i=(i+1)%256;u=(u+p[i])%256;var t=p[i];p[i]=p[u];p[u]=t;k=p[((p[i]+p[u])%256)];o+=String.fromCharCode(r.charCodeAt(q)^k)}return o};",
+    "sign3": "d76e889b6aafd3087ac3bd56f4d4053a",
+--------------------
+sign1="df49ef8d562129b1ed36cc1235e04c24ff461c78";
+sign3="d76e889b6aafd3087ac3bd56f4d4053a";
+
+sign=s(sign3,sign1)
+var base_sign=Base64.encode(s(sign3, sign1));  
+console.log(base_sign); 
+//百度实际sign： JgZ6GS/bsfJS7MA52Jei/yaMvj6rfcKNaFJ9Pc9itRMeVnNbqVy3ag==
+
+======================================网上抄的js的base64加解密函数：
+base64 JS语法下的定义：
+var Base64 = {
+    _keyStr: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
+    encode: function (e) {
+        var t = "";
+        var n, r, i, s, o, u, a;
+        var f = 0;
+        e = Base64._utf8_encode(e);
+        while (f < e.length) {
+            n = e.charCodeAt(f++);
+            r = e.charCodeAt(f++);
+            i = e.charCodeAt(f++);
+            s = n >> 2;
+            o = (n & 3) << 4 | r >> 4;
+            u = (r & 15) << 2 | i >> 6;
+            a = i & 63;
+            if (isNaN(r)) {
+                u = a = 64
+            } else if (isNaN(i)) {
+                a = 64
+            }
+            t = t + this._keyStr.charAt(s) + this._keyStr.charAt(o) + this._keyStr.charAt(u) + this._keyStr.charAt(a)
+        }
+        return t
+    }, decode: function (e) {
+        var t = "";
+        var n, r, i;
+        var s, o, u, a;
+        var f = 0;
+        e = e.replace(/[^A-Za-z0-9+/=]/g, "");
+        while (f < e.length) {
+            s = this._keyStr.indexOf(e.charAt(f++));
+            o = this._keyStr.indexOf(e.charAt(f++));
+            u = this._keyStr.indexOf(e.charAt(f++));
+            a = this._keyStr.indexOf(e.charAt(f++));
+            n = s << 2 | o >> 4;
+            r = (o & 15) << 4 | u >> 2;
+            i = (u & 3) << 6 | a;
+            t = t + String.fromCharCode(n);
+            if (u != 64) {
+                t = t + String.fromCharCode(r)
+            }
+            if (a != 64) {
+                t = t + String.fromCharCode(i)
+            }
+        }
+        t = Base64._utf8_decode(t);
+        return t
+    }, _utf8_encode: function (e) {
+        e = e.replace(/rn/g, "n");
+        var t = "";
+        for (var n = 0; n < e.length; n++) {
+            var r = e.charCodeAt(n);
+            if (r < 128) {
+                t += String.fromCharCode(r)
+            } else if (r > 127 && r < 2048) {
+                t += String.fromCharCode(r >> 6 | 192);
+                t += String.fromCharCode(r & 63 | 128)
+            } else {
+                t += String.fromCharCode(r >> 12 | 224);
+                t += String.fromCharCode(r >> 6 & 63 | 128);
+                t += String.fromCharCode(r & 63 | 128)
+            }
+        }
+        return t
+    }, _utf8_decode: function (e) {
+        var t = "";
+        var n = 0;
+        var r = c1 = c2 = 0;
+        while (n < e.length) {
+            r = e.charCodeAt(n);
+            if (r < 128) {
+                t += String.fromCharCode(r);
+                n++
+            } else if (r > 191 && r < 224) {
+                c2 = e.charCodeAt(n + 1);
+                t += String.fromCharCode((r & 31) << 6 | c2 & 63);
+                n += 2
+            } else {
+                c2 = e.charCodeAt(n + 1);
+                c3 = e.charCodeAt(n + 2);
+                t += String.fromCharCode((r & 15) << 12 | (c2 & 63) << 6 | c3 & 63);
+                n += 3
+            }
+        }
+        return t
+    }
+}
+
+//用法：  
+// 定义字符串  
+var string = 'Hello World!';  
+// 加密  
+var encodedString = Base64.encode(string);  
+console.log(encodedString); // 输出: "SGVsbG8gV29ybGQh"  
+// 解密  
+var decodedString = Base64.decode(encodedString);  
+console.log(decodedString); // 输出: "Hello World!"  
+
+===================================
+<script type="text/javascript">
+	!
+	function() { (function() {
+			var context = {
+				"loginstate": 1,
+				"username": "z3935212",
+				"third": 0,
+				"flag": 1,
+				"file_list": null,
+				"uk": 2433224667,
+				"task_key": "42b27206adb2276b249d8cf74b377f71c78b0b3d",
+				"task_time": 1514786314,
+				"sampling": {
+					"expvar": ["video_high_speed", "disk_timeline"]
+				},
+				"bdstoken": "1ed63c7f24fd368f96f7073bd49b89ab",
+				"is_vip": 0,
+				"bt_paths": null,
+				"applystatus": 1,
+				"sign1": "e788ed448ae1fa5cfe980b77ac2ea9afd8a9148a",
+				"sign2": "function s(j,r){var a=[];var p=[];var o=\"\";var v=j.length;for(var q=0;q<256;q++){a[q]=j.substr((q%v),1).charCodeAt(0);p[q]=q}for(var u=q=0;q<256;q++){u=(u+p[q]+a[q])%256;var t=p[q];p[q]=p[u];p[u]=t}for(var i=u=q=0;q<r.length;q++){i=(i+1)%256;u=(u+p[i])%256;var t=p[i];p[i]=p[u];p[u]=t;k=p[((p[i]+p[u])%256)];o+=String.fromCharCode(r.charCodeAt(q)^k)}return o};",
+				"sign3": "e8c7d729eea7b54551aa594f942decbe",
+				"timestamp": 1514786314,
+				"timeline_status": 1,
+				"face_status": 0,
+				"srv_ts": 1514786314,
+				"need_tips": null,
+				"is_year_vip": 0,
+				"show_vip_ad": 0,
+				"vip_end_time": null,
+				"is_evip": 0,
+				"is_svip": 0,
+				"is_auto_svip": 0,
+				"activity_status": 0,
+				"photo": "https:\/\/ss0.bdstatic.com\/7Ls0a8Sm1A5BphGlnYG\/sys\/portrait\/item\/4191040c.jpg",
+				"curr_activity_code": 0,
+				"activity_end_time": 0,
+				"token": "f6ebBrqFLgbnfGiRFy2dqx8DwgyDtIgD293z2viVPO0k05qcQIvRMaHjI+I11KCB9WTW5f42o+mhVJMNTAAO1Aapcac8UBshCYn1zjNzOp3GfxbY9u71pIvXozKowIHnd2xodY6ZFGW0iONXMiIE4Vx5CIA4YygICCkfLSV\/zyJsWCaH0qZkZyDK+7ev60+Ju92i8WZQjbsPU8olnda8mYB80LmPFdk+ZArshe2P1t4AuvkBiwe37YKQMFCxRlAqdKvi6+48Sc663FhCYtaM5i+KLAXqLw",
+				"sharedir": 0,
+				"pansuk": "OpLREfM63KQ4qj4zh66cTA",
+				"urlparam": [],
+				"XDUSS": "pansec_DCb740ccc5511e5e8fedcff06b081203-u26LPtfu4hq8zQaqcZd1bAbq9N1JvcMAiwlrUx1DGKjcRCNNA4lnNIUVNj2%2B8%2B9eKdolpVruT8xdHcaR02bWJjz2il7QXHYyngKmZfJ8dhpRloTFrBNdPg6k%2BdS2%2FigF62QnUXuDwW2xjePvY8E5MDzfqHzHJEeWFZtsQjNnuBNvucQ%2FpNM9oLKDBid4a64wExSBdV0CAf7%2BTjEfoEoW8W6tUD%2BffJ8E5irofeEUm%2FBdqQ0uo6qsrp1FOzx9p3J4ypTkAHZuiG4TkOufkC%2BJsg%3D%3D"
+			};
+			var yunData = require('disk-system:widget/data/yunData.js');
+			yunData.setData(context);
+			yunData.setData('SERVERTIME', 1514786314942);
+			yunData.setData('product', 'yun');
+		})();
+	} ();
+<\/script>
+---------------------------------context中sign2代表的函数：
+
+执行yunData.setData(context);为yunData赋值之后，sign参数由三个变为五个：
+String sign1="4ebd5e3aaf63f95fd790f8322037289e6c84356a";
+String sign3="d76a889b6aafd3o87ac3bd56f4d4053a";
+String sign4="d76a889b6aafd3o87ac3bd56f4d4053a";
+String sign5="d76e889b6aafd3087ac3bd56f4d4053a";
+
+String sign="dgUsRH/YuvcGvMQ7jJf1qCfftDiuJsCNaVcrOsk5vkJOU39Zqwq2Mw%3D%3D";
+
+=========
+sign1="cc942f3a1311109b3e40e2ff5a1a3ba75f135b5e"
+sign2="function s(j,r){var a=[];var p=[];var o="";var v=j.length;for(var q=0;q<256;q++){a[q]=j.substr((q%v),1).charCodeAt(0);p[q]=q}for(var u=q=0;q<256;q++){u=(u+p[q]+a[q])%256;var t=p[q];p[q]=p[u];p[u]=t}for(var i=u=q=0;q<r.length;q++){i=(i+1)%256;u=(u+p[i])%256;var t=p[i];p[i]=p[u];p[u]=t;k=p[((p[i]+p[u])%256)];o+=String.fromCharCode(r.charCodeAt(q)^k)}return o};"
+sign3="d76e889b6aafd3087ac3bd56f4d4053a"
+srv_ts=1514807420
+
+sign1="cc942f3a1311109b3e40e2ff5a1a3ba75f135b5e"
+sign2="function s(j,r){var a=[];var p=[];var o="";var v=j.length;for(var q=0;q<256;q++){a[q]=j.substr((q%v),1).charCodeAt(0);p[q]=q}for(var u=q=0;q<256;q++){u=(u+p[q]+a[q])%256;var t=p[q];p[q]=p[u];p[u]=t}for(var i=u=q=0;q<r.length;q++){i=(i+1)%256;u=(u+p[i])%256;var t=p[i];p[i]=p[u];p[u]=t;k=p[((p[i]+p[u])%256)];o+=String.fromCharCode(r.charCodeAt(q)^k)}return o};"
+sign3="d76a889b6aafd3o87ac3bd56f4d4053a"
+sign4="d76a889b6aafd3o87ac3bd56f4d4053a"
+sign5="d76e889b6aafd3087ac3bd56f4d4053a"
+task_time=1514807420
+timestamp=1514807420
+
+sign = getbaidu("d76e889b6aafd3087ac3bd56f4d4053a","cc942f3a1311109b3e40e2ff5a1a3ba75f135b5e");=="IQN3FHjbuvdW6cM52575rHCNuTitLJXZbgYpbMhj5hBNVnZerV21Nw"
+sign = getbaidu("d76a889b6aafd3o87ac3bd56f4d4053a","cc942f3a1311109b3e40e2ff5a1a3ba75f135b5e");=="vaIQJMSGqVCVhnujMMQ616nOE3FHqNiaCYAZR0q7OTEwyjYwdtNbmQ=="
+sign = getbaidu("d76a889b6aafd3o87ac3bd56f4d4053a","4ebd5e3aaf63f95fd790f8322037289e6c84356a");=="6qRLdMOFqVDF03yhZ8020/6cHnFEoo3ODtEbEUvhYWMzzz83cIRYnQ=="
+sign = getbaidu("d76e889b6aafd3087ac3bd56f4d4053a","cc942f3a1311109b3e40e2ff5a1a3ba75f135b5e");=="dgUsRH/YuvcGvMQ7jJf1qCfftDiuJsCNaVcrOsk5vkJOU39Zqwq2Mw=="
+
+另外一个案例：
+sign=pxweNMUKSGyqVmBLU1DDpwMo82%2BlaD3XfBa1jZUJsC1kH5eqLHqIhg%3D%3D
+输入：
+"sign1": "e788ed448ae1fa5cfe980b77ac2ea9afd8a9148a",
+"sign3": "e8c7d729eea7b54551aa594f942decbe",
+getbaidu("e8c7d729eea7b54551aa594f942decbe","e788ed448ae1fa5cfe980b77ac2ea9afd8a9148a");=="pxweNMUKSGyqVmBLU1DDpwMo82+laD3XfBa1jZUJsC1kH5eqLHqIhg=="
+输出：yunData中
+sign1:"afe3020e5abee4405f891f79a8ac4ed239655eef" 
+sign3:"a8c7d729eea7b5455laa594f942decbe"    
+sign4:"a8c7d729eea7b5455laa594f942decbe"
+sign5:"e8c7d729eea7b54551aa594f942decbe" 原来的 sign3
+
+====================================================
+百度网盘获取真实下载链接思路：
+0、 使用登陆之后的Cookie发请求包；
+1、 页面[1]https://pan.baidu.com/disk/home? 页面正则匹配js代码中context的sign1、sign3、timestamp的值；
+2、 使用算法 sign= baidu_base64(sign2(sign3,sign1));base64算法是百度自己写的，[不是公开的那种]计算出sign的值以便后面使用；
+3、 页面[3]https://pan.baidu.com/api/list?dir=%2F&bdstoken=1ed63c7f24fd368f96f7073bd49b89ab&logid=&num=100&order=name&desc=0&clienttype=0&showempty=0&web=1&page=1&channel=chunlei&web=1&app_id=250528
+	页面[3]的响应包是json，是根目录下文件夹和文件的详情；想进入哪个文件夹就修改dir参数。结果中有[fs_id]等一系元数据参数
+4、 页面[4]https://pan.baidu.com/api/download?
+	页面[4]就是获取真实下载链接的请求页面；其请求包的重要参数获取方式：
+	a、&fidlist=%5B916188959762109%5D   转换后： [916188959762109]；根据文件名从页面[3]中获取
+	b、&logid=MTUxNDY1Mjg3MTY5NzAuNzY4OTg5NjY3ODcwMzY5OA==   转换后：15146528716970.7689896678703698： 未找到组合方式、可以设置为空不影响，
+	c、&timestamp=1514652585   转换后： 2017/12/31 0:49:45   
+	d、&sign=XONIzY1zrSWZXB%2FRLEKkOnNrxtvVaLzn4k%2BLmOBvD88tbY0h0U7DtQ%3D%3D 
+	其中c、d最关键；获取方式：步骤[1-2]中获取的。原理分析：
+	页面[1]中的context中有sign1、sign2、sign3、三个参数，其中sign2是一个签名函数，
+	通过sign2(sign3,sign1) 计算出签名值之后使用[百度自己的base64算法]加密即得到结果。
+	timestamp 时间参数和sign一致，猜测sign1和sign3是由timestamp计算得到的。并且这个timestamp好像有过期时间。
+	sign3好像很长一段时间才会刷新，sign1每次访问页面[1]都会改变。
+
+5、 &bdstoken=1ed63c7f24fd368f96f7073bd49b89ab # 固定不变，没有测试注销之后再登陆百度网盘是否会变。
+6、 步骤[1]中使用的正则：
+	"sign1"\:"(.*?)"\,"sign2"
+	"sign3"\:"(.*?)"\,"timestamp"
+	"timestamp"\:(.*?)\,"timeline_status
+7、 sign2函数[js版本]：
+function s(j, r) {
+  var a = [];
+  var p = [];
+  var o = "";
+  var v = j.length;
+  for (var q = 0; q < 256; q++) {
+    a[q] = j.substr((q % v), 1).charCodeAt(0);
+    p[q] = q
+  }
+  for (var u = q = 0; q < 256; q++) {
+    u = (u + p[q] + a[q]) % 256;
+    var t = p[q];
+    p[q] = p[u];
+    p[u] = t
+  }
+  for (var i = u = q = 0; q < r.length; q++) {
+    i = (i + 1) % 256;
+    u = (u + p[i]) % 256;
+    var t = p[i];
+    p[i] = p[u];
+    p[u] = t;
+    k = p[((p[i] + p[u]) % 256)];
+    o += String.fromCharCode(r.charCodeAt(q) ^ k)
+  }
+  return o
+};
+
+sign2函数[java版本]：
+	private static String getbaidu(String j, String r) {
+		Integer[] a = new Integer[256];
+		Integer[] p = new Integer[256];
+		String o = "";
+		int v = j.length();
+		for (int q = 0; q < 256; q++) {
+			int z = q % v;
+			String js = j.substring(z, z + 1);
+			int jc = (int) js.charAt(0);
+			a[q] = jc;
+			p[q] = q;
+		}
+		for (int u = 0, q = 0; q < 256; q++) {
+			u = (u + p[q] + a[q]) % 256;
+			int t = p[q];
+			p[q] = p[u];
+			p[u] = t;
+		}
+		for (int i = 0, u = 0, q = 0; i < r.length(); q++) {
+			i = (i + 1) % 256;
+			u = (u + p[i]) % 256;
+			int t = p[i];
+			p[i] = p[u];
+			p[u] = t;
+			int k = p[(p[i] + p[u]) % 256];
+			int kr = r.charAt(q) ^ k;
+			o += (char) kr + "";
+		}
+		return o;
+	}
+8、百度的base64算法[java版本]：网上找的，不知道他是怎么搞出这个算法的。[http://www.yiqivr.com/2015/02/02/%E6%8A%93%E5%8C%85%E7%99%BE%E5%BA%A6%E4%BA%91%E3%80%81115%E3%80%81360%E7%BD%91%E7%9B%98%E7%9C%9F%E5%AE%9E%E5%9C%B0%E5%9D%80/]
+	private static String base64(String G) {
+		String C = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+		int _ = G.length();
+		System.out.println(_);
+		int A = 0;
+		String B = "";
+		while (A < _) {
+			int F = G.charAt(A++) & 255;
+			if (A == _) {
+				B += C.charAt(F >> 2);
+				B += C.charAt((F & 3) << 4);
+				B += "==";
+				break;
+			}
+			int D = G.charAt(A++);
+			if (A == _) {
+				B += C.charAt(F >> 2);
+				B += C.charAt(((F & 3) << 4) | ((D & 240) >> 4));
+				B += C.charAt((D & 15) << 2);
+				B += "=";
+				break;
+			}
+			int E = G.charAt(A++);
+			B += C.charAt(F >> 2);
+			B += C.charAt(((F & 3) << 4) | ((D & 240) >> 4));
+			B += C.charAt(((D & 15) << 2) | ((E & 192) >> 6));
+			B += C.charAt(E & 63);
+		}
+		return B;
+	}
+
+9、 python版本的两个函数：

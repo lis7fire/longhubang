@@ -1,0 +1,49 @@
+最终结果：
+{
+    "errno": 0,
+    "request_id": 8459270654182746000,
+    "dlink": [
+        {
+            "fs_id": "652510367067460",
+            "dlink": "https://d.pcs.baidu.com/file/6fa2d8eaef62c65858995471ed89db4a?fid=2433224667-250528-652510367067460&time=1514713239&rt=pr&sign=FDTAERVC-DCb740ccc5511e5e8fedcff06b081203-bcY4IHhKye%2FBn6pwkXxIxrPw3l0%3D&expires=8h&chkv=1&chkbd=1&chkpc=&dp-logid=8459270654182746596&dp-callid=0&r=204542481"
+        }
+    ]
+}
+===================================
+219：响应包格式：
+{
+    "errno": 0,
+    "guid_info": "",
+    "list": [
+        {
+            "server_mtime": 1512200261,
+            "category": 6,
+            "unlist": 0,
+            "fs_id": 652510367067460,
+            "oper_id": 2433224667,
+            "server_ctime": 1435736187,
+            "isdir": 0,
+            "local_mtime": 1435736185,
+            "size": 1450331051,
+            "share": 0,
+            "md5": "6fa2d8eaef62c65858995471ed89db4a",
+            "path": "/极客学院-视频2016/极客学院(知识体系图 实战路径图)/知识体系图/03、iOS开发.rar",
+            "local_ctime": 1435736185,
+            "server_filename": "03、iOS开发.rar"
+        },
+    ],
+    "request_id": 8459255254830038000,
+    "guid": 0
+}
+
+sign：解码前： [JgZ6GS%2FbsfJS7MA52Jei%2FyaMvj6rfcKNaFJ9Pc9itRMeVnNbqVy3ag%3D%3D]
+解码后：
+JgZ6GS/bsfJS7MA52Jei/yaMvj6rfcKNaFJ9Pc9itRMeVnNbqVy3ag==
+分析： JgZ6GS/
+bsfJS7MA52Jei/
+yaMvj6rfcKNaFJ9Pc9itRMeVnNbqVy3ag==
+fidlist:文件编号：api/list页面响应包的fs_id字段；形式： %5B652510367067460%5D 
+timestamp：解码前: [1514713006]
+logid：15147132286740.8612842377031988；解码前：[MTUxNDcxMzIyODY3NDAuODYxMjg0MjM3NzAzMTk4OA==]
+	   1514713228674：'2017-12-31 17:40:28:674'; [MTUxNDcxMzIyODY3ND] 15147132247350.5978297789532772
+如果只修改fidlist的值，

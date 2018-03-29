@@ -1,0 +1,25 @@
+{
+    'errno': 0,
+    'guid_info': '',
+    'list': [
+        {
+            'category': 6,
+            'unlist': 0,
+            'fs_id': 850803368063155,
+            'dir_empty': 1,
+            'oper_id': 0,
+            'server_ctime': 1408133676,
+            'local_mtime': 1408133676,
+            'size': 0,
+            'share': 0,
+            'isdir': 1,
+            'path': '/path/q',
+            'local_ctime': 1408133676,
+            'server_filename': 'q',
+            'empty': 0,
+            'server_mtime': 1408133684
+        }
+    ],
+    'request_id': 90469866551778834,
+    'guid': 0
+}
