@@ -1,4 +1,5 @@
 # longhubang
+远程的master
 抓取龙虎榜数据并存储到MySQL中
 
 本项目需要的工具
