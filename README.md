@@ -1,4 +1,4 @@
-# longhubang
+# longhubang-1
 抓取龙虎榜数据并存储到MySQL中
 远程lab
 新建的本地分支lab
